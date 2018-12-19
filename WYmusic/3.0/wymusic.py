@@ -1,0 +1,77 @@
+"""
+title：main.py
+author：blueberryc
+"""
+
+import requests
+import json
+import re
+import urllib.request
+import Singer
+import pandas as pd
+
+
+class WYmusic(object):
+    def __init__(self, song_name, song_id, path):
+        self.song_name = song_name
+        self.song_id = song_id
+        self.path = path
+
+    def get_lyric(self):
+        url = 'http://music.163.com/api/song/lyric?' + 'id=' + str(self.song_id) + '&lv=1&kv=1&tv=-1'
+        try:
+            r = requests.get(url)
+            r.encoding = 'utf-8'
+            json_obj = r.text
+            j = json.loads(json_obj)
+            #error = "{'uncollected':true,'sgc':true,'sfy':true,'qfy':true,'code':200}"
+            # 利用正则表达式去除时间轴
+            lyric = j['lrc']['lyric']
+            regex = re.compile(r'\[.*\]')
+            final_lyric = re.sub(regex, '', lyric)
+            return final_lyric
+        except:
+            final_lyric = "歌词未找到"
+            return final_lyric
+
+
+    def get_mp3(self):
+        url = 'http://music.163.com/song/media/outer/url?id=' + str(self.song_id)+'.mp3'
+        try:
+            print("正在下载：{0}".format(self.song_name))
+            urllib.request.urlretrieve(url, '{0}/{1}.mp3'.format(self.path, self.song_name))
+            print("Finish...")
+        except:
+            print("Fail...")
+
+    def write_text(self):
+        lyric = self.get_lyric()
+        print("正在写入歌曲：{0}".format(self.song_name))
+        print(lyric)
+        with open("{0}/{1}.txt".format(self.path, self.song_name), 'w', encoding='utf-8') as f:
+            f.write(lyric)
+
+
+def downloader(singer_id):
+    # 将歌曲信息写入文件
+    info = Singer.Song_info(singer_id)
+    song_info, path = info.get_song_info()
+    info.save2csv(song_info, path, head=['song', 'link'])
+    print(song_info, path)
+    print('{0}\\singer{1}.csv'.format(path, singer_id))
+    # 根据歌曲信息获取歌词和mp3
+    info = pd.read_csv('{0}\\singer{1}.csv'.format(path, singer_id), engine='python', encoding='utf-8')
+    for index, row in info.iterrows():
+        song = row['song']
+        regex = re.compile(r'id=.*')
+        link = re.search(regex, row['link']).group()[3:]
+        music = WYmusic(song, link, path)
+        music.write_text()
+        music.get_mp3()
+def main():
+    #downloader(2116)
+    downloader(4405635)
+
+
+if __name__ == '__main__':
+    main()

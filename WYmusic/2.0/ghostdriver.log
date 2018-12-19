@@ -1,0 +1,18 @@
+[INFO  - 2018-10-22T06:15:30.547Z] GhostDriver - Main - running on port 50951
+[INFO  - 2018-10-22T06:15:30.947Z] Session [e0a89870-d5c1-11e8-83a1-7f6d89d5429d] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2018-10-22T06:15:30.947Z] Session [e0a89870-d5c1-11e8-83a1-7f6d89d5429d] - page.customHeaders:  - {}
+[INFO  - 2018-10-22T06:15:30.947Z] Session [e0a89870-d5c1-11e8-83a1-7f6d89d5429d] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2018-10-22T06:15:30.947Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: e0a89870-d5c1-11e8-83a1-7f6d89d5429d
+[ERROR - 2018-10-22T06:16:13.267Z] Session [e0a89870-d5c1-11e8-83a1-7f6d89d5429d] - page.onError - msg: TypeError: undefined is not an object (evaluating 'bhs0x.addCallback')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-10-22T06:16:13.269Z] Session [e0a89870-d5c1-11e8-83a1-7f6d89d5429d] - page.onError - stack:
+  (anonymous function) (https://s3.music.126.net/web/s/core_489e8cc68a561d406af2d2101c4acd19.js?489e8cc68a561d406af2d2101c4acd19:134)
+  forEach (:0)
+  bf9W (https://s3.music.126.net/web/s/core_489e8cc68a561d406af2d2101c4acd19.js?489e8cc68a561d406af2d2101c4acd19:17)
+  (anonymous function) (https://s3.music.126.net/web/s/core_489e8cc68a561d406af2d2101c4acd19.js?489e8cc68a561d406af2d2101c4acd19:134)
+  (anonymous function) (https://s3.music.126.net/web/s/core_489e8cc68a561d406af2d2101c4acd19.js?489e8cc68a561d406af2d2101c4acd19:1)
+  Vc6W (https://s3.music.126.net/web/s/core_489e8cc68a561d406af2d2101c4acd19.js?489e8cc68a561d406af2d2101c4acd19:25)
+  (anonymous function) (https://s3.music.126.net/web/s/core_489e8cc68a561d406af2d2101c4acd19.js?489e8cc68a561d406af2d2101c4acd19:1)
+
+  phantomjs://platform/console++.js:263 in error
